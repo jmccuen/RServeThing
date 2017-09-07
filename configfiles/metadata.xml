@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Entities>
+    <ExtensionPackages>
+        <ExtensionPackage dependsOn="" description="" minimumThingWorxVersion="7.0.0" name="RServeThing" packageVersion="1.1.5" vendor="Thingworx Labs">
+            <JarResources>
+                <FileResource description="" file="rservething.jar" type="JAR"/>
+                <FileResource description="" file="REngine.jar" type="JAR"/>
+                <FileResource description="" file="Rserve.jar" type="JAR"/>
+            </JarResources>
+        </ExtensionPackage>
+    </ExtensionPackages>
+    <ThingPackages>
+        <ThingPackage className="com.thingworx.things.rserve.RServeThing" description="" name="RServeThingPackage"/>
+    </ThingPackages>
+    <ThingTemplates>
+        <ThingTemplate aspect.isEditableExtensionObject="false" description="" name="RServeThing" thingPackage="RServeThingPackage"/>
+    </ThingTemplates>
+    <Widgets>
+	    <Widget name="rservicehandler">
+      		<UIResources>
+        		<FileResource type="JS" file="twServiceEditorWithR.js" description="" isDevelopment="true" isRuntime="false"/>
+      		</UIResources>
+    	</Widget>
+	</Widgets>
+</Entities>
