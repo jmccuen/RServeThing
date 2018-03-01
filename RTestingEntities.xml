@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Entities build="b11" majorVersion="8" minorVersion="0" modelPersistenceProviderPackage="NeoPersistenceProviderPackage" revision="0" schemaVersion="1000"><StyleDefinitions/><Networks/><PersistenceProviderPackages/><Mashups/><ScriptFunctionLibraries/><Projects/><Users/><DirectoryServices/><Widgets/><MediaEntities/><Groups/><PersistenceProviders/><NotificationContents/><ModelTags/><LocalizationTables/><Dashboards/><DataAnalysisDefinitions/><DataShapes><DataShape baseDataShape="" description="" documentationContent="" homeMashup="" lastModifiedDate="2017-09-08T12:35:04.639-05:00" name="AccelerometerDataShape" projectName="" tags="Applications:RTesting"><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTables/><FieldDefinitions><FieldDefinition baseType="STRING" description="" name="a" ordinal="5"/><FieldDefinition baseType="STRING" description="" name="b" ordinal="6"/><FieldDefinition baseType="STRING" description="" name="c" ordinal="7"/><FieldDefinition baseType="STRING" description="" name="d" ordinal="8"/><FieldDefinition baseType="NUMBER" description="" name="timestep" ordinal="1"/><FieldDefinition baseType="NUMBER" description="" name="x" ordinal="2"/><FieldDefinition baseType="NUMBER" description="" name="y" ordinal="3"/><FieldDefinition baseType="NUMBER" description="" name="z" ordinal="4"/></FieldDefinitions><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="header : name : updated, tags : updated&#10;fields : timestep : Added, x : Added, y : Added, z : Added, a : Added, b : Added, c : Added, d : Added&#10;" timestamp="2017-09-08T12:35:04.639-05:00" user="Administrator"/></ConfigurationChanges></DataShape><DataShape baseDataShape="" description="" documentationContent="" homeMashup="" lastModifiedDate="2017-09-08T12:30:19.155-05:00" name="TelefonicaDataShape" projectName="" tags="Applications:RTesting"><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTables/><FieldDefinitions><FieldDefinition baseType="STRING" description="" name="datetime" ordinal="0"/><FieldDefinition baseType="STRING" description="" name="id" ordinal="0"/><FieldDefinition baseType="NUMBER" description="" name="value" ordinal="0"/></FieldDefinitions><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="header : name : updated&#10;" timestamp="2017-09-07T20:16:19.510-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="fields : value : Updated&#10;" timestamp="2017-09-07T20:19:37.189-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="header : tags : updated&#10;" timestamp="2017-09-08T12:30:19.155-05:00" user="Administrator"/></ConfigurationChanges></DataShape><DataShape baseDataShape="" description="" documentationContent="" homeMashup="" lastModifiedDate="2017-09-08T12:30:12.777-05:00" name="TestTelefonicsNew" projectName="" tags="Applications:RTesting"><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTables/><FieldDefinitions><FieldDefinition baseType="LONG" description="" name="code" ordinal="0"/><FieldDefinition baseType="DATETIME" description="" name="datetime" ordinal="0"/><FieldDefinition baseType="NUMBER" description="" name="value" ordinal="0"/></FieldDefinitions><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="header : name : updated&#10;fields : datetime : Updated&#10;" timestamp="2017-09-07T23:35:31.080-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="header : tags : updated&#10;" timestamp="2017-09-08T12:30:12.777-05:00" user="Administrator"/></ConfigurationChanges></DataShape></DataShapes><Things><Thing description="" documentationContent="" effectiveThingPackage="FileRepositoryThing" enabled="true" homeMashup="" identifier="" lastModifiedDate="2017-09-08T12:46:03.492-05:00" name="Main.FileRepository" projectName="" published="false" tags="Applications:RTesting" thingTemplate="FileRepository" valueStream=""><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTables/><ThingShape><PropertyDefinitions/><ServiceDefinitions><ServiceDefinition aspect.isAsync="false" category="" description="" isAllowOverride="false" isLocalOnly="false" isOpen="false" isPrivate="false" name="ParseAccelerometerData"><ResultType aspect.dataShape="AccelerometerDataShape" baseType="INFOTABLE" description="" name="result" ordinal="0"/><ParameterDefinitions/></ServiceDefinition><ServiceDefinition aspect.isAsync="false" category="" description="" isAllowOverride="false" isLocalOnly="false" isOpen="false" isPrivate="false" name="ParseModeData"><ResultType baseType="INFOTABLE" description="" name="result" ordinal="0"/><ParameterDefinitions/></ServiceDefinition><ServiceDefinition aspect.isAsync="false" category="" description="" isAllowOverride="false" isLocalOnly="false" isOpen="false" isPrivate="false" name="ParseTelefonicaData"><ResultType aspect.dataShape="TelefonicaDataShape" baseType="INFOTABLE" description="" name="result" ordinal="0"/><ParameterDefinitions/></ServiceDefinition></ServiceDefinitions><EventDefinitions/><ServiceMappings/><ServiceImplementations><ServiceImplementation description="" handlerName="Script" name="ParseAccelerometerData"><ConfigurationTables><ConfigurationTable description="Script" isMultiRow="false" name="Script" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition baseType="STRING" description="code" name="code" ordinal="0"/></FieldDefinitions></DataShape><Rows><Row><code><![CDATA[
+var params = {
+	path: "/csv/jc/20151202145002_DataLogFileCNC.csv" /* STRING */,
+	columnMappings: undefined /* STRING */,
+	hasHeader: true /* BOOLEAN */,
+	longitudeField: undefined /* NUMBER */,
+	dateFormat: undefined /* STRING */,
+	fileRepository: me.name /* THINGNAME */,
+	latitudeField: undefined /* NUMBER */,
+	fieldDelimiter: undefined /* STRING */,
+	stringDelimiter: undefined /* STRING */,
+	dataShape: "AccelerometerDataShape" /* DATASHAPENAME */
+};
+
+// result: INFOTABLE
+var result = Resources["Parsley"].ParseCSV(params);
+
+]]></code></Row></Rows></ConfigurationTable></ConfigurationTables></ServiceImplementation><ServiceImplementation description="" handlerName="Script" name="ParseModeData"><ConfigurationTables><ConfigurationTable description="Script" isMultiRow="false" name="Script" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition baseType="STRING" description="code" name="code" ordinal="0"/></FieldDefinitions></DataShape><Rows><Row><code><![CDATA[
+var params = {
+	path: "/csv/jc/modesAll.csv" /* STRING */,
+	columnMappings: undefined /* STRING */,
+	hasHeader: true /* BOOLEAN */,
+	longitudeField: undefined /* NUMBER */,
+	dateFormat: undefined /* STRING */,
+	fileRepository: me.name /* THINGNAME */,
+	latitudeField: undefined /* NUMBER */,
+	fieldDelimiter: undefined /* STRING */,
+	stringDelimiter: undefined /* STRING */,
+	dataShape: undefined /* DATASHAPENAME */
+};
+
+// result: INFOTABLE
+var result = Resources["Parsley"].ParseCSV(params);
+
+]]></code></Row></Rows></ConfigurationTable></ConfigurationTables></ServiceImplementation><ServiceImplementation description="" handlerName="Script" name="ParseTelefonicaData"><ConfigurationTables><ConfigurationTable description="Script" isMultiRow="false" name="Script" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition baseType="STRING" description="code" name="code" ordinal="0"/></FieldDefinitions></DataShape><Rows><Row><code><![CDATA[
+var params = {
+	path: "/csv/telefonica/data.csv" /* STRING */,
+	columnMappings: undefined /* STRING */,
+	hasHeader: true /* BOOLEAN */,
+	longitudeField: undefined /* NUMBER */,
+	dateFormat: undefined /* STRING */,
+	fileRepository: me.name /* THINGNAME */,
+	latitudeField: undefined /* NUMBER */,
+    fieldDelimiter: ";" /* STRING */,
+	stringDelimiter: undefined /* STRING */,
+	dataShape: undefined /* DATASHAPENAME */
+};
+
+// result: INFOTABLE
+var result = Resources["Parsley"].ParseCSV(params);
+
+var params = {
+	types: "NUMBER" /* STRING */,
+	t: result /* INFOTABLE */,
+	columns: "value" /* STRING */,
+	expressions: "Number(value)" /* STRING */
+};
+
+// result: INFOTABLE
+var result = Resources["InfoTableFunctions"].DeriveFields(params);
+
+
+]]></code></Row></Rows></ConfigurationTable></ConfigurationTables></ServiceImplementation></ServiceImplementations><Subscriptions/></ThingShape><PropertyBindings/><RemotePropertyBindings/><RemoteServiceBindings/><RemoteEventBindings/><AlertConfigurations/><ImplementedShapes/><ThingProperties/><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="header : name : updated, thingTemplate : updated&#10;" timestamp="2017-09-07T20:15:13.458-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : ParseTelefonicaData : Code Updated, Output Updated, Service Added&#10;" timestamp="2017-09-07T20:15:55.567-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : ParseTelefonicaData : Code Updated&#10;" timestamp="2017-09-07T20:16:09.008-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : ParseTelefonicaData : Output Updated&#10;" timestamp="2017-09-07T20:16:31.815-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-07T20:18:59.466-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-07T20:19:14.335-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services :  : Code Updated, Output Updated, getDate : Service Added&#10;" timestamp="2017-09-08T10:21:22.248-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : getDate : Code Updated&#10;" timestamp="2017-09-08T10:21:36.666-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:23:09.659-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:23:20.822-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:23:32.033-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:23:50.191-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:24:53.235-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:25:42.149-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:25:57.477-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : getDate : removed&#10;" timestamp="2017-09-08T10:29:09.823-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="header : tags : updated&#10;" timestamp="2017-09-08T12:29:48.645-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : ParseModeData : Code Updated, Output Updated, Service Added&#10;" timestamp="2017-09-08T12:31:19.862-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : ParseModeData : Code Updated&#10;" timestamp="2017-09-08T12:31:34.450-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : ParseModeData : Output Updated, ParseAccelerometerData : Code Updated, Output Updated, Service Added&#10;" timestamp="2017-09-08T12:33:05.091-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : ParseAccelerometerData : Output Updated, Code Updated&#10;" timestamp="2017-09-08T12:35:23.888-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T12:46:03.491-05:00" user="Administrator"/></ConfigurationChanges></Thing><Thing description="" documentationContent="" effectiveThingPackage="RServeThingPackage" enabled="true" homeMashup="" identifier="" lastModifiedDate="2017-09-08T12:53:24.222-05:00" name="RServe" projectName="" published="false" tags="Applications:RTesting" thingTemplate="RServeThing" valueStream=""><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTables><ConfigurationTable description="Connection Monitoring Settings" isMultiRow="false" name="ConnectionMonitoring" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition aspect.defaultValue="30000.0" aspect.friendlyName="Monitor Rate (seconds)" baseType="NUMBER" description="Monitor rate in milliseconds" name="connectionMonitorRate" ordinal="1"/><FieldDefinition aspect.defaultValue="false" aspect.friendlyName="Enable Monitoring" baseType="BOOLEAN" description="Enable connection monitoring" name="enableMonitor" ordinal="0"/><FieldDefinition aspect.defaultValue="1.0" aspect.friendlyName="Number of Retries" baseType="NUMBER" description="Number of retries" name="numberOfRetries" ordinal="2"/><FieldDefinition aspect.defaultValue="2000.0" aspect.friendlyName="Retry Delay (milliseconds)" baseType="NUMBER" description="Retry delay in milliseconds" name="retryDelay" ordinal="3"/></FieldDefinitions></DataShape><Rows><Row><retryDelay>2000.0</retryDelay><connectionMonitorRate>30000.0</connectionMonitorRate><numberOfRetries>1.0</numberOfRetries><enableMonitor>false</enableMonitor></Row></Rows></ConfigurationTable><ConfigurationTable description="" isMultiRow="false" name="RServeConfiguration" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition aspect.defaultValue="localhost" baseType="STRING" description="host address for the RServe Server" name="host" ordinal="0"/><FieldDefinition baseType="PASSWORD" description="" name="password" ordinal="3"/><FieldDefinition aspect.defaultValue="6311" baseType="INTEGER" description="Port for the RServe Server" name="port" ordinal="1"/><FieldDefinition baseType="STRING" description="" name="username" ordinal="2"/></FieldDefinitions></DataShape><Rows><Row><password/><port>6311</port><host><![CDATA[localhost]]></host><username/></Row></Rows></ConfigurationTable></ConfigurationTables><ThingShape><PropertyDefinitions/><ServiceDefinitions><ServiceDefinition aspect.isAsync="false" category="" description="" isAllowOverride="false" isLocalOnly="false" isOpen="false" isPrivate="false" name="Count"><ResultType baseType="INFOTABLE" description="" name="result" ordinal="0"/><ParameterDefinitions/></ServiceDefinition><ServiceDefinition aspect.isAsync="false" category="" description="" isAllowOverride="false" isLocalOnly="false" isOpen="false" isPrivate="false" name="JCJSWrapper"><ResultType baseType="INFOTABLE" description="" name="result" ordinal="0"/><ParameterDefinitions/></ServiceDefinition><ServiceDefinition aspect.isAsync="false" category="" description="" isAllowOverride="false" isLocalOnly="false" isOpen="false" isPrivate="false" name="JCRScript"><ResultType baseType="INFOTABLE" description="" name="result" ordinal="0"/><ParameterDefinitions><FieldDefinition aspect.defaultValue="20151202145002_DataLogFileCNC.csv" baseType="STRING" description="" name="filename" ordinal="3"/><FieldDefinition aspect.dataShape="AccelerometerDataShape" baseType="INFOTABLE" description="" name="infoTable" ordinal="2"/><FieldDefinition baseType="INFOTABLE" description="" name="modeTable" ordinal="1"/></ParameterDefinitions></ServiceDefinition><ServiceDefinition aspect.isAsync="false" category="" description="" isAllowOverride="false" isLocalOnly="false" isOpen="false" isPrivate="false" name="TelefonicaJSWrapper"><ResultType aspect.dataShape="TestTelefonicsNew" baseType="INFOTABLE" description="" name="result" ordinal="0"/><ParameterDefinitions/></ServiceDefinition><ServiceDefinition aspect.isAsync="false" category="" description="" isAllowOverride="false" isLocalOnly="false" isOpen="false" isPrivate="false" name="TelefonicaRScript"><ResultType baseType="INFOTABLE" description="" name="result" ordinal="0"/><ParameterDefinitions><FieldDefinition aspect.dataShape="TelefonicaDataShape" baseType="INFOTABLE" description="" name="data" ordinal="1"/></ParameterDefinitions></ServiceDefinition></ServiceDefinitions><EventDefinitions/><ServiceMappings/><ServiceImplementations><ServiceImplementation description="" handlerName="Script" name="Count"><ConfigurationTables><ConfigurationTable description="Script" isMultiRow="false" name="Script" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition baseType="STRING" description="code" name="code" ordinal="0"/></FieldDefinitions></DataShape><Rows><Row><code><![CDATA[
+// result: INFOTABLE dataShape: "undefined"
+var result = me.TelefonicaJSWrapper();
+
+
+var params = {
+	t: result /* INFOTABLE */,
+	columns: "value" /* STRING */,
+	aggregates: "COUNT" /* STRING */,
+	groupByColumns: undefined /* STRING */
+};
+
+// result: INFOTABLE
+var result = Resources["InfoTableFunctions"].Aggregate(params);
+
+]]></code></Row></Rows></ConfigurationTable></ConfigurationTables></ServiceImplementation><ServiceImplementation description="" handlerName="Script" name="JCJSWrapper"><ConfigurationTables><ConfigurationTable description="Script" isMultiRow="false" name="Script" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition baseType="STRING" description="code" name="code" ordinal="0"/></FieldDefinitions></DataShape><Rows><Row><code><![CDATA[var modeData = Things["Main.FileRepository"].ParseModeData();
+var accelerometerData = Things["Main.FileRepository"].ParseAccelerometerData();
+
+var params = {
+	modeTable: modeData /* INFOTABLE */,
+	infoTable: accelerometerData /* INFOTABLE */,
+    filename: "20151202145002_DataLogFileCNC.csv"
+};
+
+var result = me.JCRScript(params);
+
+]]></code></Row></Rows></ConfigurationTable></ConfigurationTables></ServiceImplementation><ServiceImplementation description="" handlerName="R" name="JCRScript"><ConfigurationTables><ConfigurationTable description="R" isMultiRow="false" name="R" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition baseType="STRING" description="code" name="code" ordinal="0"/></FieldDefinitions></DataShape><Rows><Row><code><![CDATA[#############################################################################
+# This code perform FFT on data from accelerometer file                     #
+# "y" is the filepath                                                       #
+# "axis" is the index of the axis of interest: 1 for X, 2 for Y and 3 for Z #
+#############################################################################
+makespectrum <- function(data,axis) {
+  MyData <- data
+  column <- ncol(MyData)
+  row <- nrow(MyData)
+  y <- MyData[,axis]
+  y <- as.numeric(unlist(y))
+  y <- Mod(fft(y))
+  return(y)
+}
+#############################################################################
+
+###############################################################
+# This function smoothes the a spectrum to ease extraction of #
+# peaks and their amplitude. s is the avarageing window size  #
+###############################################################
+smoothy <- function(y,s) {
+  print("Smooth input vector")
+  print(head(y,n=5))
+  ysmooth <- vector()
+  m <- matrix(,nrow=length(y)+s,ncol=0)
+  names <- vector()
+  for (i in 1:s) {
+    h <- rep(0,i)
+    t <- rep(0,s-i)
+    vec <- c(c(h,y),t)
+    m <- cbind(m,vec)
+    n <- paste("shift",i,sep = "_")
+    names <- c(names,n)
+  }
+  colnames(m) <- names
+  ysmooth <- cbind(rowMeans(m))
+  l <- length(ysmooth)
+  s1 <- floor(s/2)
+  s2 <- l-s1+1
+  ysmooth <- ysmooth[-c(s2:l)]
+  ysmooth <- ysmooth[-c(1:s1)]
+  print("Smooth output vector")
+  print(head(ysmooth,n=5))
+  return (ysmooth)
+}
+###############################################################
+
+###############################################################
+# This function extracts the peaks from an input spectrum     #
+# and output the their frequencies, amplitudes and width      #
+# Here is a description of its input parameters               #
+# 1. "y" is  the input spectrum. The code was developed using #
+# spectrum of even size                                       #
+# 2. "m" is a multiplier used to set the spectrum background  #
+# level. The code compute the background level as m*min(y)    #
+# 3. "n" is the step size of the peak detection algorithm     #
+# 4. "l" is the threshold value of peak width at the the      #
+# background level. Any peak with width < l will be ignored.  #
+# 5. "r" is the maximum rate of descent of the peak extract   #
+# algo. It's used to determine the peak bottom limits and to  #
+# separate peaks from one another.                            #
+###############################################################
+# mat <- findpeak(y,4,100,200,1)
+findpeak <- function(y,m,n,l,r) {
+  print("Finding peaks in spectrum vector...")
+  peakwidthfloor <- l
+  freqlist <- vector()
+  amplist <- vector()
+  widthlist <- vector()
+  matlist <- vector()
+  peakstartlist <- vector()
+  peakstoplist <- vector()
+  y <- as.numeric(unlist(y))
+  peaktemp <- max(y)
+  freq <- match(peaktemp,y)
+  print("Min value in spectrum")
+  print(min(y))
+  mn <- m * min(y)
+  print("Peak threshold value")
+  print(mn)
+  while (peaktemp > mn) {
+    peakstartpos <- freq
+    peakstoppos <- freq
+    pos1 <- freq
+    pos2 <- freq
+    step <- n
+    p <- peaktemp
+    p1 <- peaktemp
+    p2 <- peaktemp
+    p1_minus <- 2 * peaktemp
+    p2_minus <- 2 * peaktemp
+    while (p > mn) {
+      pos1 <- pos1 - step
+      if (pos1 > 1) {
+        val1 <- y[pos1]
+        delta1 <- (val1-p1_minus)/step
+        if ((val1 > mn) && (val1 <= p1) && (delta1 <- r)) {
+          peakstartpos <- pos1
+          # p1 <- val1
+        }
+      }
+      pos2 <- pos2 + step
+      if (pos2 < length(y)) {
+        val2 <- y[pos2]
+        delta2 <- (val2-p2_minus)/step
+        if ((val2 > mn) && (val2 <= p2) && (delta2 <- r)) {
+          peakstoppos <- pos2
+          # p2 <- val2
+        }
+      }
+      pair <- c(y[pos1],y[pos2])
+      p <- min(pair, na.rm=TRUE)
+    }
+    peakwidth <- pos2 - pos1
+    if (peakwidth > peakwidthfloor) {
+      freqlist <- c(freqlist,freq)
+      amplist <- c(amplist,peaktemp)
+      widthlist <- c(widthlist,peakwidth)
+      peakstartlist <- c(peakstartlist,peakstartpos)
+      peakstoplist <- c(peakstoplist,peakstoppos)
+    }
+
+    for (i in peakstartpos:peakstoppos) {
+      y[i] <- -1
+    }
+    peaktemp <- max(y)
+    p1_minus <- 2 * peaktemp
+    p2_minus <- 2 * peaktemp
+    freq <- match(peaktemp,y)
+  }
+  matlist <- cbind(matlist,freqlist)
+  matlist <- cbind(matlist,amplist)
+  matlist <- cbind(matlist,widthlist)
+  matlist <- cbind(matlist,peakstartlist)
+  matlist <- cbind(matlist,peakstoplist)
+  # colnames(matlist) <- c("DateTime","Frequency","Amplitude","Peakwidth","Peakstart","Peakstop")
+  colnames(matlist) <- c("Frequency","Amplitude","Peakwidth","Peakstart","Peakstop")
+  print(head(matlist,n=5))
+  print(tail(matlist,n=5))
+  return(matlist)
+}
+###############################################################
+
+####################################################################
+# This function processes a spectrum and extract the ammplitudes   #
+# of mode peaks. It returns a vector with indexes matching the     #
+# modes, and values representing amplitudes.                       #
+# Here is a description of its parameters:                         #
+# "x" is the spectrum to process                                   #
+# "y" is the reference matrix that contains the list of peaks      #
+# provided one row at the time. Each row contains the following    #
+# columns:                                                         #
+# "Frequency"                                                      #
+# "Aplitude"                                                       #
+# "Peakwidth"                                                      #
+# "Peakstart"                                                      #
+# "Peakstop"                                                       #
+####################################################################
+getmodes <- function(x,y) {
+  size <- nrow(y)
+  newvec <- rep(0,size)
+  for (i in 1:size) {
+    peakstart <- y[i,"Peakstart"]
+    peakstop <- y[i,"Peakstop"]
+    amplitude <- max(x[peakstart:peakstop])
+    newvec[i] <- amplitude
+  }
+  return(newvec)
+}
+####################################################################
+
+###############################################################
+# Create column names for the matrix                          #
+###############################################################
+matrixcolumns <- function(n) {
+  axislist <- c("X","Y","Z")
+  names <- vector()
+  names <- c("DateTime","Epoch(seconds)")
+  for (i in 1:3) {
+    axis <- axislist[i]
+    for (j in 1:n) {
+      mode <- paste("vibe","peak",j,"Axis",axis,sep="_")
+      names <- c(names,mode)
+    }
+  }
+  return(names)
+}
+
+modesmatrix <- modeTable
+amplitudesmatrix <- matrixcolumns(nrow(modesmatrix))
+amplitudesmatrix <- matrix(, nrow = 0, ncol = nrow(modesmatrix))
+
+
+date <- paste(substr(filename,1,4),substr(filename,5,6),substr(filename,7,8),sep="-")
+time <- paste(substr(filename,9,10),substr(filename,11,12),substr(filename,13,14),sep=":")
+datetime <- paste(date,time,sep=" ")
+
+epoch <- as.integer(as.POSIXct(as.character(datetime)))
+
+candidateforpredictor <- c(datetime,epoch)
+for (j in 1:3) {
+  k <- j+1					# accelerometer data are saved in columns 2, 3, and 4
+  spectrum <- makespectrum(infoTable,k)
+  newvec <-unique(getmodes(spectrum,modesmatrix))
+  candidateforpredictor <- c(candidateforpredictor,newvec)
+}
+
+result = candidateforpredictor]]></code></Row></Rows></ConfigurationTable></ConfigurationTables></ServiceImplementation><ServiceImplementation description="" handlerName="Script" name="TelefonicaJSWrapper"><ConfigurationTables><ConfigurationTable description="Script" isMultiRow="false" name="Script" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition baseType="STRING" description="code" name="code" ordinal="0"/></FieldDefinitions></DataShape><Rows><Row><code><![CDATA[//parse CSV File
+var data = Things["Main.FileRepository"].ParseTelefonicaData();
+
+//get aggregate data using R Script
+var rdata = me.TelefonicaRScript({data: data});
+
+//parse date
+var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({infoTableName : "InfoTable",dataShapeName : "TestTelefonicsNew"});
+
+for each (var row in rdata.rows) {
+    var newEntry = new Object();
+    newEntry.datetime = parseDate(row.datetime + " GMT","YYYY-MM-dd HH:mm:ss zzz");
+    newEntry.code = row.code;
+    newEntry.value = row.value;
+    result.AddRow(newEntry);
+};
+
+
+
+]]></code></Row></Rows></ConfigurationTable></ConfigurationTables></ServiceImplementation><ServiceImplementation description="" handlerName="R" name="TelefonicaRScript"><ConfigurationTables><ConfigurationTable description="R" isMultiRow="false" name="R" ordinal="0"><DataShape><FieldDefinitions><FieldDefinition baseType="STRING" description="code" name="code" ordinal="0"/></FieldDefinitions></DataShape><Rows><Row><code><![CDATA[agg_data <- aggregate(as.numeric(data$value), by=list(datetime=data$datetime), FUN=sum)
+names(agg_data) <- c("datetime","value")
+
+quantiles <- quantile(agg_data$value)
+agg_data$code <- sapply(agg_data$value,  FUN=function(x){ min(which(quantiles >= x)) })
+
+result = agg_data
+
+
+
+]]></code></Row></Rows></ConfigurationTable></ConfigurationTables></ServiceImplementation></ServiceImplementations><Subscriptions/></ThingShape><PropertyBindings/><RemotePropertyBindings/><RemoteServiceBindings/><RemoteEventBindings/><AlertConfigurations/><ImplementedShapes/><ThingProperties/><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="" timestamp="2017-09-08T08:26:08.253-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : TelefonicaRScript : Output Updated, TelefonicaJSWrapper : Code Updated&#10;" timestamp="2017-09-08T10:28:34.041-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : TelefonicaJSWrapper : Output Updated&#10;" timestamp="2017-09-08T10:31:35.431-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:31:43.731-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:32:25.554-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:32:42.843-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:32:47.816-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:35:29.329-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:36:00.548-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:36:52.639-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:37:12.450-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:37:23.986-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T10:37:50.269-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : TelefonicaRScript : Output Updated&#10;" timestamp="2017-09-08T12:27:07.510-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="header : tags : updated&#10;" timestamp="2017-09-08T12:29:56.648-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : JCRScript : ServiceType updated, Output Updated, Code Updated, Inputs updated, Service Added,  : Input parameter modeTable Added, Input parameter infoTable Added, Input parameter infoTable Updated, JCJSWrapper : Code Updated, Output Updated, Service Added&#10;" timestamp="2017-09-08T12:49:15.884-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : JCRScript : Output Updated, Code Updated&#10;" timestamp="2017-09-08T12:49:31.360-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : JCRScript : Output Updated, Input parameter fileName Added, Inputs updated, Input parameter fileName Updated&#10;" timestamp="2017-09-08T12:52:00.563-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : JCRScript : Output Updated, Input parameter filename Updated, Inputs updated&#10;" timestamp="2017-09-08T12:52:51.808-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="services : JCJSWrapper : Code Updated&#10;" timestamp="2017-09-08T12:53:20.554-05:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2017-09-08T12:53:24.219-05:00" user="Administrator"/></ConfigurationChanges></Thing></Things><Logs/><Authenticators/><ThingPackages/><NotificationDefinitions/><ApplicationKeys/><StateDefinitions/><ThingTemplates/><ExtensionPackages/><Organizations/><Menus/><Resources/><DataTags/><ThingShapes/><Subsystems/></Entities>

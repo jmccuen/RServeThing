@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Entities>
     <ExtensionPackages>
-        <ExtensionPackage dependsOn="" description="" minimumThingWorxVersion="7.0.0" name="RServeThing" packageVersion="1.1.5" vendor="Thingworx Labs">
+        <ExtensionPackage dependsOn="" description="" minimumThingWorxVersion="7.0.0" name="RServeThing" packageVersion="1.1.11" vendor="Thingworx Labs">
             <JarResources>
                 <FileResource description="" file="rservething.jar" type="JAR"/>
                 <FileResource description="" file="REngine.jar" type="JAR"/>
@@ -16,10 +16,10 @@
         <ThingTemplate aspect.isEditableExtensionObject="false" description="" name="RServeThing" thingPackage="RServeThingPackage"/>
     </ThingTemplates>
     <Widgets>
-	    <Widget name="rservicehandler">
-      		<UIResources>
-        		<FileResource type="JS" file="twServiceEditorWithR.js" description="" isDevelopment="true" isRuntime="false"/>
-      		</UIResources>
-    	</Widget>
-	</Widgets>
+        <Widget name="rservicehandler">
+            <UIResources>
+                <FileResource description="" file="twServiceEditorWithR.js" isDevelopment="true" isRuntime="false" type="JS"/>
+            </UIResources>
+        </Widget>
+    </Widgets>
 </Entities>

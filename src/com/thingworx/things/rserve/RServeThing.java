@@ -1,28 +1,15 @@
 package com.thingworx.things.rserve;
 
-import java.util.Iterator;
-import java.util.Vector;
-
-import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.slf4j.Logger;
-
-import com.thingworx.data.util.InfoTableInstanceFactory;
 import com.thingworx.logging.LogUtilities;
-import com.thingworx.metadata.FieldDefinition;
 import com.thingworx.metadata.annotations.ThingworxBaseTemplateDefinition;
 import com.thingworx.metadata.annotations.ThingworxConfigurationTableDefinition;
 import com.thingworx.metadata.annotations.ThingworxConfigurationTableDefinitions;
 import com.thingworx.metadata.annotations.ThingworxDataShapeDefinition;
 import com.thingworx.metadata.annotations.ThingworxFieldDefinition;
 import com.thingworx.metadata.annotations.ThingworxHandlerDefinitions;
-import com.thingworx.metadata.annotations.ThingworxServiceDefinition;
-import com.thingworx.metadata.annotations.ThingworxServiceParameter;
-import com.thingworx.metadata.annotations.ThingworxServiceResult;
 import com.thingworx.things.connections.ConnectableThing;
-import com.thingworx.types.BaseTypes;
-import com.thingworx.types.InfoTable;
-import com.thingworx.types.collections.ValueCollection;
 
 @SuppressWarnings("serial")
 @ThingworxBaseTemplateDefinition(name = "GenericThing")
@@ -46,9 +33,10 @@ public class RServeThing extends ConnectableThing {
 		return this._connection.isConnected();
 	}
 	
+	
+	
 	public void startConnectableThing() throws Exception
 	  {
-		
 		this._connection = new RConnection((String)getConfigurationSetting("RServeConfiguration", "host"),(Integer)getConfigurationSetting("RServeConfiguration", "port"));
 		if (this._connection.isConnected()) {
 			if (this._connection.needLogin()) {

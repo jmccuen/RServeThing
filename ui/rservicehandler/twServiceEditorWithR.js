@@ -386,12 +386,6 @@ TW.jqPlugins.twServiceEditor.prototype._plugin_afterSetProperties = function () 
                 }
                 maxItemsEl.show();
                 break;
-            case "R":
-                outputFieldDefinitionEl.twOutputDefinition("updateBaseType", "INFOTABLE");
-                break;
-            case "Python":
-                outputFieldDefinitionEl.twOutputDefinition("updateBaseType", "STRING");
-                break;
             case "SQLCommand":
                 outputFieldDefinitionEl.twOutputDefinition("updateBaseType", "NUMBER");
                 if (handlerChanged) {
@@ -1565,7 +1559,7 @@ TW.IDE.convertHandlerToDisplayHandler = function (handlerName) {
         case "Remote":
             return TW.IDE.I18NController.translate("tw.utility-functions.handlers.remote");
         case "R":
-            return "Local (R)";
+            return "Remote (R)";
         case "Python":
             return "Local (Python)";
         case "":

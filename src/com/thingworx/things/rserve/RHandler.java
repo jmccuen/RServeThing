@@ -1,5 +1,7 @@
 package com.thingworx.things.rserve;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -180,10 +182,11 @@ public InfoTable GetResultTable(REXP value) throws Exception {
 				field.setBaseType(GetBaseType(item));
 				result.addField(field);
 				
+				String[] fieldValues = item.asStrings();
+				
 				for (int r=0;r<item.length();r++) {
+					String fieldValue = fieldValues[r];
 					
-					String fieldValue = item.asStrings()[r];
-
 					if (c==0) {
 						ValueCollection row = new ValueCollection();
 						row.setValue(fieldName, BaseTypes.ConvertToPrimitive(fieldValue,GetBaseType(item)));
@@ -300,6 +303,16 @@ public InfoTable GetResultTable(REXP value) throws Exception {
 			row.SetNumberValue("result",value.asDouble());
 			result.addRow(row);
 		}
+	} else if (value.isRaw()) { 
+		//must be an image?
+		FieldDefinition field = new FieldDefinition();
+    	field.setBaseType(BaseTypes.IMAGE);
+    	field.setName("result");
+    	result.addField(field);
+    	ValueCollection values = new ValueCollection();
+    	values.SetImageValue("result", BaseTypes.ConvertToPrimitive(value.asBytes(), BaseTypes.IMAGE));
+    	result.addRow(values);
+		
 	} else {
 		FieldDefinition field = new FieldDefinition();
 		field.setName("result");
